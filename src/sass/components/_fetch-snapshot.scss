@@ -1,0 +1,33 @@
+/**
+ * @section Image styling
+ * Adds borders and height limits to images
+ */
+
+/**
+ * Adds a border
+ */
+.fetch-img-border {
+	border: calc-em(1px) solid darken( $color-gray-light, 10% );
+}
+
+/**
+ * Adds padding and a white border
+ */
+.fetch-img-photo {
+	@extend .fetch-img-border;
+	padding: calc-em(4px);
+	background-color: $color-white;
+	box-shadow: 0 calc-em(1px) calc-em(1px) rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Limit image height
+ */
+
+.fetch-img-limit-height {
+	max-height: 12em;
+}
+
+.fetch-img-limit-height-large {
+	max-height: 25em;
+}

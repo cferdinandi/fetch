@@ -1,0 +1,97 @@
+/**
+ * @section Overrides
+ * Nudge and tweak alignment, spacing, and visibility.
+ */
+
+
+/**
+* Text sizes
+*/
+
+.fetch-text-small {
+	font-size: calc-em(15px);
+}
+
+.fetch-all-pets-heading {
+	font-size: calc-em(19px);
+}
+
+
+/**
+* Text colors
+*/
+
+.fetch-text-muted {
+	color: $color-gray-dark;
+}
+
+
+/**
+ * Floats
+ */
+.fetch-float-center {
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/**
+* Text alignment
+*/
+
+.fetch-text-center {
+	text-align: center;
+}
+
+
+/**
+* Margins
+*/
+
+.fetch-no-margin-top {
+	margin-top: 0;
+}
+
+.fetch-no-margin-bottom {
+	margin-bottom: 0;
+}
+
+.fetch-margin-bottom {
+	margin-bottom: $spacing;
+}
+
+.fetch-margin-bottom-small {
+	margin-bottom: calc-em(8px);
+}
+
+
+/**
+* Padding
+*/
+
+.fetch-no-padding-top {
+	padding-top: 0;
+}
+
+.fetch-no-padding-bottom {
+	padding-bottom: 0;
+}
+
+
+/**
+* Contain floats
+* The space content is one way to avoid an Opera bug when the `contenteditable` attribute is included anywhere else in the document.
+* @link https://github.com/h5bp/html5-boilerplate/blob/master/dist/css/main.css
+*/
+%clearfix {
+	&:before,
+	&:after {
+		display: table;
+		content: " ";
+	}
+
+	&:after {
+		clear: both;
+	}
+}
