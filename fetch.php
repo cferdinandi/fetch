@@ -5,7 +5,7 @@
  * Plugin URI: http://fetch.gomakethings.com
  * Bitbucket Plugin URI: https://cferdinandi@bitbucket.org/cferdinandi/fetch.git
  * Description: The insanely easy to display a beautiful, mobile-friendly list of adoptable pets from Petfinder on your website.
- * Version: 0.2.0
+ * Version: 1.0.0
  * Author: Chris Ferdinandi
  * Author URI: http://gomakethings.com
  * License: LicenseRef-See included LICENSE.md

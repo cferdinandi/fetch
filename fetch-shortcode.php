@@ -89,8 +89,8 @@
 					'/*! Credits: https://github.com/filamentgroup/loadJS, https://github.com/filamentgroup/loadCSS */' .
 					'var loadCSS=function(e,n,t){var r,a=window,i=a.document,l=i.createElement("link");if(n)r=n;else{var o=(i.body||i.getElementsByTagName("head")[0]).childNodes;r=o[o.length-1]}var d=i.styleSheets;l.rel="stylesheet",l.href=e,l.media="only x",r.parentNode.insertBefore(l,n?r:r.nextSibling);var f=function(e){for(var n=l.href,t=d.length;t--;)if(d[t].href===n)return e();setTimeout(function(){f(e)})};return l.onloadcssdefined=f,f(function(){l.media=t||"all"}),l};' .
 					'var loadJS=function(e,t){"use strict";var n=window.document.getElementsByTagName("script")[0],o=window.document.createElement("script");return o.src=e,o.async=!0,n.parentNode.insertBefore(o,n),t&&"function"==typeof t&&(o.onload=t),o};' .
-					'loadCSS("' . plugins_url( '/dist/css/fetch.css', __FILE__ ) . '");' .
-					'loadJS("' . plugins_url( '/dist/js/fetch.js', __FILE__ ) . '", function(){' .
+					'loadCSS("' . plugins_url( '/fetch.css', __FILE__ ) . '");' .
+					'loadJS("' . plugins_url( '/fetch.js', __FILE__ ) . '", function(){' .
 						'fetch.init({' .
 
 							// API Defaults
