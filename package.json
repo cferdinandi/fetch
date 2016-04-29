@@ -1,7 +1,7 @@
 {
-	"name": "fetch",
+	"name": "Fetch",
 	"version": "0.2.0",
-	"description": "A JavaScript plugin that makes it insanely easy to display a beautiful, mobile-friendly list of adoptable pets from Petfinder on your website",
+	"description": "The insanely easy to display a beautiful, mobile-friendly list of adoptable pets from Petfinder on your website.",
 	"main": "./dist/js/fetch.js",
 	"author": {
 		"name": "Chris Ferdinandi",

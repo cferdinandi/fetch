@@ -56,7 +56,7 @@
 		// Miscellaneous
 		titlePrefix: '{{name}} | ',
 		loading: 'Fetching the latest pet info...',
-		noPet: '<div class="fetch-grid-full">Sorry, but this pet is no longer available. <a href="{{url.all}}">View available pets.</a></div>',
+		noPet: '<div>Sorry, but this pet is no longer available. <a href="{{url.all}}">View available pets.</a></div>',
 
 		// Pet photos
 		noImage: '',
@@ -193,7 +193,7 @@
 					'</aside>' +
 				'</article>',
 			onePet:
-				'<article class="fetch-grid-full">' +
+				'<article>' +
 					'<header>' +
 						'<h1 class="fetch-no-margin-bottom fetch-no-padding-bottom">{{name}}</h1>' +
 						'<aside><p><a href="{{url.all}}">&larr; Back to All Pets</a></p></aside>' +
@@ -239,7 +239,7 @@
 			'<div class="fetch-margin-bottom" data-petfinder="main" data-right-height>' +
 				content.innerHTML +
 			'</div>' +
-			'<p><em>Powered by <a rel="nofollow" href="https://www.petfinder.com/">Petfinder</a> using the <a href="http://fetch.gomakethings.com">Fetch plugin</a>.</em></p>';
+			'<p id="fetch-powered-by"><em>Powered by <a rel="nofollow" href="https://www.petfinder.com/">Petfinder</a> using the <a href="http://fetch.gomakethings.com">Fetch plugin</a>.</em></p>';
 
 	};
 
@@ -253,6 +253,7 @@
 		var content = document.querySelector( settings.selectorContent );
 		var main = content.querySelector( settings.selectorAppMain );
 		var aside = content.querySelector( settings.selectorAppAside );
+		var poweredBy = content.querySelector( '#fetch-powered-by' );
 
 		// Sanity check
 		if ( !main || !aside ) return;
@@ -270,6 +271,7 @@
 			content.classList.add( 'fetch-row' );
 			main.classList.add( 'fetch-grid-three-fourths' );
 			aside.classList.add( 'fetch-grid-fourth' );
+			poweredBy.classList.add( 'fetch-grid-full' );
 
 			return;
 

@@ -45,6 +45,17 @@ var fileinclude = require('gulp-file-include');
 var paths = {
     input: 'src/**/*',
     output: 'dist/',
+    fetch: {
+        input: [
+            'dist/js/fetch.js',
+            'dist/css/fetch.css',
+            'fetch.php',
+            'fetch-shortcode.php',
+            'LICENSE.md',
+            'README.md'
+        ],
+        output: 'fetch/',
+    },
     scripts: {
         input: 'src/js/*',
         output: 'dist/js/'
@@ -277,6 +288,17 @@ gulp.task('copy:dist', ['compile', 'clean:docs'], function() {
     }, 150);
 });
 
+// Copy distribution files to plugin folder
+gulp.task('copy:fetch', ['compile', 'clean:fetch'], function() {
+    setTimeout(function() {
+        for ( var i = 0, len = paths.fetch.input.length; i < len; i++ ) {
+            gulp.src(paths.fetch.input[i])
+                .pipe(plumber())
+                .pipe(gulp.dest(paths.fetch.output));
+        }
+    }, 150);
+});
+
 // Copy documentation assets to docs
 gulp.task('copy:assets', ['clean:docs'], function() {
     return gulp.src(paths.docs.assets)
@@ -287,6 +309,11 @@ gulp.task('copy:assets', ['clean:docs'], function() {
 // Remove prexisting content from docs folder
 gulp.task('clean:docs', function () {
     return del.sync(paths.docs.output);
+});
+
+// Remove prexisting content from fetch folder
+gulp.task('clean:fetch', function () {
+    return del.sync(paths.fetch.output);
 });
 
 // Spin up livereload server and listen for file changes
@@ -328,10 +355,16 @@ gulp.task('docs', [
     'copy:assets'
 ]);
 
+gulp.task('fetch', [
+    'clean:fetch',
+    'copy:fetch'
+]);
+
 // Compile files and generate docs (default)
 gulp.task('default', [
     'compile',
-    'docs'
+    'docs',
+    'fetch'
 ]);
 
 // Compile files and generate docs when something changes
