@@ -2,11 +2,16 @@
 
 Copyright (c) Go Make Things, LLC
 
+## Permissions
+
 Permission is hereby granted to the purchaser of this software (the "Licensee") and associated
 documentation files (the "Software") as follows:
 - This license does not expire, and cannot be transferred or sold.
 - The Licensee can modify the Software, but you may not distribute the modified work.
 - The Licensee may run the Software on their Website[s] and Server[s].
+	- Single Site license may be used on one website.
+	- Multiple Site license may be used on up to three websites.
+	- Unlimited Site license may be used on an unlimited number of websites.
 - The Licensee must provide attribution to Go Make Things, LLC.
 
 Parts of the software are provided under separate licenses, as follows: imagesLoaded.js,

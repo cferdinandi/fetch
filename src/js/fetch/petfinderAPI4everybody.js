@@ -386,7 +386,7 @@
 	var getPetPhoto = function ( pet, size, num ) {
 
 		// If pet has no photos, end method
-		if ( pet.media.photos.photo.count === 0 ) return '';
+		if ( !pet.media.photos.photo || pet.media.photos.photo.count === 0 ) return '';
 
 		// Variables
 		var image = settings.noImage;
