@@ -386,7 +386,7 @@
 	var getPetPhoto = function ( pet, size, num ) {
 
 		// If pet has no photos, end method
-		if ( !pet.media.photos.photo || pet.media.photos.photo.count === 0 ) return '';
+		if ( !pet.media || !pet.media.photos || !pet.media.photos.photo || pet.media.photos.photo.count === 0 ) return '';
 
 		// Variables
 		var image = settings.noImage;
@@ -959,7 +959,7 @@
 	var createRequestURL = function ( callback ) {
 
 		// Setup basic request in JSON format
-		var url = 'http://api.petfinder.com/shelter.getPets?format=json';
+		var url = '//api.petfinder.com/shelter.getPets?format=json';
 		var options = '';
 
 		// Add options
