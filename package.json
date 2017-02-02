@@ -1,6 +1,6 @@
 {
 	"name": "Fetch",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "The insanely easy to display a beautiful, mobile-friendly list of adoptable pets from Petfinder on your website.",
 	"main": "./dist/js/fetch.js",
 	"author": {
