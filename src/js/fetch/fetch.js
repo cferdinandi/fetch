@@ -1,4 +1,3 @@
-/*! fetch v2.0.0 | (c) 2019 Chris Ferdinandi | LicenseRef-See included LICENSE.md License | https://github.com/cferdinandi/fetch | Includes code from: https://gist.github.com/gitgrimbo/6451492, http://photoswipe.com, https://github.com/cferdinandi/right-height, https://github.com/cferdinandi/houdini */
 var Fetch = (function () {
 
 	'use strict';
@@ -59,9 +58,9 @@ var Fetch = (function () {
 
 	var getPetFromID = function (pets, petID) {
 		petID = parseFloat(petID);
-		var match = pets.filter((function (pet) {
+		var match = pets.filter(function (pet) {
 			return pet.id === petID;
-		}));
+		});
 		if (match.length > 0) return match[0];
 	};
 
@@ -102,7 +101,7 @@ var Fetch = (function () {
 				'<div class="fetch-pet-listings">' +
 					'<h1>Our Pets</h1>' +
 					'<div class="fetch-row">' +
-						pets.map((function (pet) {
+						pets.map(function (pet) {
 							var environment = getEvironment(pet.environment);
 							var html =
 								'<div class="fetch-grid">' +
@@ -116,7 +115,7 @@ var Fetch = (function () {
 									(pet.attributes.special_needs ? '<p class="fetch-all-pets-special-needs">Special Needs</p>' : '') +
 								'</div>';
 							return html;
-						})).join('') +
+						}).join('') +
 					'</div>' +
 					'<p>Powered by <a href="https://fetch.gomakethings.com">the Fetch plugin</a>.</p>';
 				'</div>' +
@@ -148,13 +147,13 @@ var Fetch = (function () {
 				'Authorization': credentials.tokenType + ' ' + credentials.token,
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}
-		}).then((function (resp) {
+		}).then(function (resp) {
 			if (resp.ok) {
 				return resp.json();
 			} else {
 				return Promise.reject(resp);
 			}
-		})).then((function (data) {
+		}).then(function (data) {
 			var allPets = pets.concat(data.animals);
 			if (data.pagination.current_page < data.pagination.total_pages) {
 				makeCall(target, credentials, settings, key, parseFloat(data.pagination.current_page) + 1, allPets);
@@ -162,7 +161,7 @@ var Fetch = (function () {
 				savePets(allPets, key);
 				renderPets(target, allPets, settings);
 			}
-		}));
+		});
 	};
 
 	/**
@@ -196,19 +195,19 @@ var Fetch = (function () {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				}
-			}).then((function (resp) {
+			}).then(function (resp) {
 				if (resp.ok) {
 					return resp.json();
 				} else {
 					return Promise.reject(resp);
 				}
-			})).then((function (data) {
+			}).then(function (data) {
 				credentials.token = data.access_token;
 				credentials.tokenType = data.token_type;
 				makeCall(target, credentials, settings, key);
-			})).catch((function (err) {
+			}).catch(function (err) {
 				console.log('something went wrong', err);
-			}));
+			});
 		};
 
 		/**

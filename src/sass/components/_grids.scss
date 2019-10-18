@@ -1,0 +1,29 @@
+/**
+ * @section Base Styles
+ */
+
+.fetch-all-pets {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 0;
+	grid-row-gap: 0;
+}
+
+.fetch-filters { grid-area: 1 / 1 / 2 / 2; }
+.fetch-pet-listings { grid-area: 1 / 2 / 2 / 5; }
+
+.fetch-row {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-column-gap: 2em;
+	column-gap: 2em;
+	grid-row-gap: 2em;
+	row-gap: 2em;
+	text-align: center;
+}
+
+// .fetch-grid {
+// 	min-height: 6em;
+// 	padding: 1em;
+// }
