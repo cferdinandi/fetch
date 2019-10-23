@@ -3,33 +3,85 @@
  * @section Base Styles
  */
 /* line 5, src/sass/components/_grids.scss */
-.fetch-all-pets {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0;
-  grid-row-gap: 0;
+.fetch-one-pet {
+  margin: 0 auto;
+  max-width: 40em;
 }
 
-/* line 13, src/sass/components/_grids.scss */
-.fetch-filters {
-  grid-area: 1 / 1 / 2 / 2;
+@media (min-width: 50em) {
+  /* line 11, src/sass/components/_grids.scss */
+  .fetch-all-pets {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+  }
+  /* line 19, src/sass/components/_grids.scss */
+  .fetch-filters {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  /* line 20, src/sass/components/_grids.scss */
+  .fetch-pet-listings {
+    grid-area: 1 / 2 / 2 / 5;
+  }
 }
 
-/* line 14, src/sass/components/_grids.scss */
-.fetch-pet-listings {
-  grid-area: 1 / 2 / 2 / 5;
-}
-
-/* line 16, src/sass/components/_grids.scss */
+/* line 23, src/sass/components/_grids.scss */
 .fetch-row {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   grid-column-gap: 2em;
   column-gap: 2em;
   grid-row-gap: 2em;
   row-gap: 2em;
   text-align: center;
+}
+
+@media (min-width: 40em) {
+  /* line 23, src/sass/components/_grids.scss */
+  .fetch-row {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media (min-width: 50em) {
+  /* line 23, src/sass/components/_grids.scss */
+  .fetch-row {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (min-width: 60em) {
+  /* line 23, src/sass/components/_grids.scss */
+  .fetch-row {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+@media (min-width: 80em) {
+  /* line 23, src/sass/components/_grids.scss */
+  .fetch-row {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+/* line 49, src/sass/components/_grids.scss */
+.fetch-pet-photos {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 2em;
+  column-gap: 2em;
+  grid-row-gap: 1.5em;
+  row-gap: 1.5em;
+  text-align: center;
+}
+
+@media (min-width: 40em) {
+  /* line 49, src/sass/components/_grids.scss */
+  .fetch-pet-photos {
+    grid-template-columns: auto auto auto;
+  }
 }
 
 /* line 1, src/sass/components/_images.scss */

@@ -2,25 +2,62 @@
  * @section Base Styles
  */
 
-.fetch-all-pets {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 1fr;
-	grid-column-gap: 0;
-	grid-row-gap: 0;
+.fetch-one-pet {
+	margin: 0 auto;
+	max-width: 40em;
 }
 
-.fetch-filters { grid-area: 1 / 1 / 2 / 2; }
-.fetch-pet-listings { grid-area: 1 / 2 / 2 / 5; }
+@media (min-width: 50em) {
+	.fetch-all-pets {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 1fr;
+		grid-column-gap: 0;
+		grid-row-gap: 0;
+	}
+
+	.fetch-filters { grid-area: 1 / 1 / 2 / 2; }
+	.fetch-pet-listings { grid-area: 1 / 2 / 2 / 5; }
+}
 
 .fetch-row {
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto;
 	grid-column-gap: 2em;
 	column-gap: 2em;
 	grid-row-gap: 2em;
 	row-gap: 2em;
 	text-align: center;
+
+	@media (min-width: 40em) {
+		grid-template-columns: auto auto auto;
+	}
+
+	@media (min-width: 50em) {
+		grid-template-columns: auto auto;
+	}
+
+	@media (min-width: 60em) {
+		grid-template-columns: auto auto auto;
+	}
+
+	@media (min-width: 80em) {
+		grid-template-columns: auto auto auto auto;
+	}
+}
+
+.fetch-pet-photos {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 2em;
+	column-gap: 2em;
+	grid-row-gap: 1.5em;
+	row-gap: 1.5em;
+	text-align: center;
+
+	@media (min-width: 40em) {
+		grid-template-columns: auto auto auto;
+	}
 }
 
 // .fetch-grid {

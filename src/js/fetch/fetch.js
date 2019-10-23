@@ -92,39 +92,64 @@ var Fetch = (function () {
 
 	var renderAllPets = function (target, pets, settings) {
 		console.log(pets);
+		target.classList.add('fetch-all-pets');
 		target.innerHTML =
-			'<div class="fetch-all-pets">' +
-				'<div class="fetch-filters">' +
-					'<h2>Filters</h2>' +
-					'<p>coming soon...</p>' +
+			'<div class="fetch-filters">' +
+				'<h2>Filters</h2>' +
+				'<p>coming soon...</p>' +
+			'</div>' +
+			'<div class="fetch-pet-listings">' +
+				'<h1>Our Pets</h1>' +
+				'<div class="fetch-row">' +
+					pets.map(function (pet) {
+						var environment = getEvironment(pet.environment);
+						var html =
+							'<div class="fetch-grid">' +
+								'<a href="?petID=' + pet.id + '">' +
+									(pet.photos.length > 0 ? '<figure><img class="fetch-img fetch-all-pets-img" alt="A photo of ' + pet.name + '" src="' + getImgURL(pet.photos[0]) + '"></figure>' : '') +
+									'<h2>' + pet.name + '</h2>' +
+								'</a>' +
+								'<p class="fetch-all-pets-summary">' + pet.size + ', ' + pet.age + ', ' + pet.gender + '</p>' +
+								'<p class="fetch-all-pets-breeds">' + getBreeds(pet.breeds) + '</p>' +
+								(environment ? '<p class="fetch-all-pets-environment">' + environment + '</p>' : '') +
+								(pet.attributes.special_needs ? '<p class="fetch-all-pets-special-needs">Special Needs</p>' : '') +
+							'</div>';
+						return html;
+					}).join('') +
 				'</div>' +
-				'<div class="fetch-pet-listings">' +
-					'<h1>Our Pets</h1>' +
-					'<div class="fetch-row">' +
-						pets.map(function (pet) {
-							var environment = getEvironment(pet.environment);
-							var html =
-								'<div class="fetch-grid">' +
-									'<a href="?petID=' + pet.id + '">' +
-										(pet.photos.length > 0 ? '<figure><img class="fetch-img fetch-all-pets-img" alt="A photo of ' + pet.name + '" src="' + getImgURL(pet.photos[0]) + '"></figure>' : '') +
-										'<h2>' + pet.name + '</h2>' +
-									'</a>' +
-									'<p class="fetch-all-pets-summary">' + pet.size + ', ' + pet.age + ', ' + pet.gender + '</p>' +
-									'<p class="fetch-all-pets-breeds">' + getBreeds(pet.breeds) + '</p>' +
-									(environment ? '<p class="fetch-all-pets-environment">' + environment + '</p>' : '') +
-									(pet.attributes.special_needs ? '<p class="fetch-all-pets-special-needs">Special Needs</p>' : '') +
-								'</div>';
-							return html;
-						}).join('') +
-					'</div>' +
-					'<p>Powered by <a href="https://fetch.gomakethings.com">the Fetch plugin</a>.</p>';
-				'</div>' +
+				'<p>Powered by <a href="https://fetch.gomakethings.com">the Fetch plugin</a>.</p>';
 			'</div>';
+	};
+
+	var getPetPhotos = function (photos, name) {
+		if (photos.length < 1) return '';
+		return '<div class="fetch-pet-photos">' + photos.map(function (photo) {
+			var url = getImgURL(photo);
+			return '<a class="fetch-pet-photo" href="' + url + '"><img class="fetch-img" alt="A photograph of ' + name + '" src="' + url + '"></a>';
+		}).join('') + '</div>';
 	};
 
 	var renderPet = function (petID, target, pets, settings) {
 		var pet = getPetFromID(pets, petID);
+		var environment = getEvironment(pet.environment);
 		console.log(pet);
+		target.classList.add('fetch-one-pet');
+
+		target.innerHTML =
+			'<h1>' + pet.name + '</h1>' +
+			getPetPhotos(pet.photos, pet.name) +
+			'<ul class="fetch-pet-summary">' +
+				'<li><strong>Size:</strong> ' + pet.size + '</li>' +
+				'<li><strong>Age:</strong> ' + pet.age + '</li>' +
+				'<li><strong>Gender:</strong> ' + pet.gender + '</li>' +
+				'<li><strong>Breeds:</strong> ' + getBreeds(pet.breeds) + '</li>' +
+			'</ul>' +
+			(environment ? '<p class="fetch-pet-environment">' + environment + '</p>' : '') +
+			(pet.attributes.special_needs ? '<p class="fetch-pet-special-needs">Special Needs</p>' : '') +
+			'<p class="fetch-pet-adoption-form"><a href="">Fill out an adoption form</a></p>' +
+			'<div class="fetch-pet-description">' +
+				pet.description +
+			'</div>';
 	};
 
 	var renderPets = function (target, pets, settings) {
@@ -142,7 +167,7 @@ var Fetch = (function () {
 	 */
 	var makeCall = function (target, credentials, settings, key, page, pets) {
 		pets = pets ? pets : [];
-		return fetch('https://api.petfinder.com/v2/animals?organization=' + credentials.shelter + '&limit=100&status=' + settings.status + (page ? '&page=' + page : ''), {
+		return fetch('https://api.petfinder.com/v2/animals/?organization=' + credentials.shelter + '&limit=100&status=' + settings.status + (page ? '&page=' + page : ''), {
 			headers: {
 				'Authorization': credentials.tokenType + ' ' + credentials.token,
 				'Content-Type': 'application/x-www-form-urlencoded'
