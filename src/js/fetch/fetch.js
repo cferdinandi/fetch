@@ -29,17 +29,6 @@ var Fetch = (function () {
 	// Methods
 	//
 
-	/**
-	 * Get the value of a query string from a URL
-	 * @param  {String} field The field to get the value of
-	 * @return {String}       The value
-	 */
-	var getQueryString = function (field) {
-		var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
-		var string = reg.exec(window.location.href);
-		return string ? string[1] : null;
-	};
-
 	var savePets = function (pets, key) {
 		sessionStorage.setItem('fetchPets_' + key, JSON.stringify({
 			pets: pets,
@@ -54,14 +43,6 @@ var Fetch = (function () {
 
 	var isFresh = function (pets) {
 		return pets && pets.pets && pets.timestamp && pets.timestamp + 3600000 < new Date().getTime();
-	};
-
-	var getPetFromID = function (pets, petID) {
-		petID = parseFloat(petID);
-		var match = pets.filter(function (pet) {
-			return pet.id === petID;
-		});
-		if (match.length > 0) return match[0];
 	};
 
 	var getImgURL = function (imgs, size) {
@@ -80,6 +61,76 @@ var Fetch = (function () {
 		return breeds.primary;
 	};
 
+	var getFilterValues = function (pets) {
+		return pets.reduce(function (filters, pet) {
+
+			// Add pet size
+			if (filters.sizes.indexOf(pet.size) < 0) {
+				filters.sizes.push(pet.size);
+			}
+
+			// Add pet age
+			if (filters.ages.indexOf(pet.age) < 0) {
+				filters.ages.push(pet.age);
+			}
+
+			// Add pet gender
+			if (filters.genders.indexOf(pet.gender) < 0) {
+				filters.genders.push(pet.gender);
+			}
+
+			// Add pet species
+			if (filters.species.indexOf(pet.species) < 0) {
+				filters.species.push(pet.species);
+			}
+
+			// Add pet breeds
+			var breeds = getBreeds(pet.breeds);
+			breeds.split(', ').forEach(function (breed) {
+				if (filters.breeds.indexOf(breed) < 0) {
+					filters.breeds.push(breed);
+				}
+			});
+
+			// Add other pet details
+			if (pet.environment.cats === false && filters.other.indexOf('No Cats') < 0) {
+				filters.other.push('No Cats');
+			}
+			if (pet.environment.dogs === false && filters.other.indexOf('No Dogs') < 0) {
+				filters.other.push('No Dogs');
+			}
+			if (pet.environment.children === false && filters.other.indexOf('No Kids') < 0) {
+				filters.other.push('No Kids');
+			}
+			if (pet.attributes.special_needs && filters.other.indexOf('Special Needs') < 0) {
+				filters.other.push('Special Needs');
+			}
+
+			return filters;
+
+		}, {sizes: [], ages: [], genders: [], species: [], breeds: [], other: []});
+	};
+
+	var getFilterFields = function (pets, settings) {
+
+		// Get filters for pets
+		var filters = getFilterValues(pets);
+
+		// Order filter values
+		filters.species.sort();
+		filters.breeds.sort();
+		filters.other.sort();
+
+		// Setup markup string
+		var html = '';
+
+		html += '<h2>Sizes</h2>' + filters.sizes.map(function (size) {
+			return '<li><label><input type="checkbox"> ' + size + '</label></li>';
+		});
+
+
+	};
+
 	var getEvironment = function (env) {
 		if (env.cats === false && env.dogs === false && env.children === false) return 'No Cats/Dogs/Kids';
 		if (env.cats === false && env.dogs === false) return 'No Cats/Dogs';
@@ -90,23 +141,22 @@ var Fetch = (function () {
 		if (env.children === false) return 'No Kids';
 	};
 
-	var renderAllPets = function (target, pets, settings) {
+	var renderPets = function (target, pets, settings) {
 		console.log(pets);
 		target.classList.add('fetch-all-pets');
+		var filters = getFilterFields(pets, settings);
 		target.innerHTML =
 			'<div class="fetch-filters">' +
-				'<h2>Filters</h2>' +
 				'<p>coming soon...</p>' +
 			'</div>' +
 			'<div class="fetch-pet-listings">' +
-				'<h1>Our Pets</h1>' +
 				'<div class="fetch-row">' +
 					pets.map(function (pet) {
 						var environment = getEvironment(pet.environment);
 						var html =
 							'<div class="fetch-grid">' +
-								'<a href="?petID=' + pet.id + '">' +
-									(pet.photos.length > 0 ? '<figure><img class="fetch-img fetch-all-pets-img" alt="A photo of ' + pet.name + '" src="' + getImgURL(pet.photos[0]) + '"></figure>' : '') +
+								'<a href="' + pet.url + '">' +
+									(pet.photos.length > 0 ? '<div><img class="fetch-img" alt="A photo of ' + pet.name + '" src="' + getImgURL(pet.photos[0]) + '"></div>' : '') +
 									'<h2>' + pet.name + '</h2>' +
 								'</a>' +
 								'<p class="fetch-all-pets-summary">' + pet.size + ', ' + pet.age + ', ' + pet.gender + '</p>' +
@@ -117,48 +167,8 @@ var Fetch = (function () {
 						return html;
 					}).join('') +
 				'</div>' +
-				'<p>Powered by <a href="https://fetch.gomakethings.com">the Fetch plugin</a>.</p>';
+				'<p>Powered by <a href="https://fetch.gomakethings.com">the Fetch plugin</a>.</p>' +
 			'</div>';
-	};
-
-	var getPetPhotos = function (photos, name) {
-		if (photos.length < 1) return '';
-		return '<div class="fetch-pet-photos">' + photos.map(function (photo) {
-			var url = getImgURL(photo);
-			return '<a class="fetch-pet-photo" href="' + url + '"><img class="fetch-img" alt="A photograph of ' + name + '" src="' + url + '"></a>';
-		}).join('') + '</div>';
-	};
-
-	var renderPet = function (petID, target, pets, settings) {
-		var pet = getPetFromID(pets, petID);
-		var environment = getEvironment(pet.environment);
-		console.log(pet);
-		target.classList.add('fetch-one-pet');
-
-		target.innerHTML =
-			'<h1>' + pet.name + '</h1>' +
-			getPetPhotos(pet.photos, pet.name) +
-			'<ul class="fetch-pet-summary">' +
-				'<li><strong>Size:</strong> ' + pet.size + '</li>' +
-				'<li><strong>Age:</strong> ' + pet.age + '</li>' +
-				'<li><strong>Gender:</strong> ' + pet.gender + '</li>' +
-				'<li><strong>Breeds:</strong> ' + getBreeds(pet.breeds) + '</li>' +
-			'</ul>' +
-			(environment ? '<p class="fetch-pet-environment">' + environment + '</p>' : '') +
-			(pet.attributes.special_needs ? '<p class="fetch-pet-special-needs">Special Needs</p>' : '') +
-			'<p class="fetch-pet-adoption-form"><a href="">Fill out an adoption form</a></p>' +
-			'<div class="fetch-pet-description">' +
-				pet.description +
-			'</div>';
-	};
-
-	var renderPets = function (target, pets, settings) {
-		var petID = getQueryString('petID');
-		if (petID) {
-			renderPet(petID, target, pets, settings);
-		} else {
-			renderAllPets(target, pets, settings);
-		}
 	};
 
 	/**

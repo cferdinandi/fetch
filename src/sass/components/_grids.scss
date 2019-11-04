@@ -2,9 +2,12 @@
  * @section Base Styles
  */
 
-.fetch-one-pet {
-	margin: 0 auto;
-	max-width: 40em;
+.fetch-all-pets {
+	*,
+	*:before,
+	*:after {
+		box-sizing: border-box;
+	}
 }
 
 @media (min-width: 50em) {
@@ -23,10 +26,10 @@
 .fetch-row {
 	display: grid;
 	grid-template-columns: auto auto;
-	grid-column-gap: 2em;
-	column-gap: 2em;
-	grid-row-gap: 2em;
-	row-gap: 2em;
+	grid-column-gap: 1.5em;
+	column-gap: 1.5em;
+	grid-row-gap: 1.5em;
+	row-gap: 1.5em;
 	text-align: center;
 
 	@media (min-width: 40em) {
