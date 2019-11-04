@@ -2,7 +2,7 @@
  * @section Base Styles
  */
 
-.fetch-all-pets {
+.fetch-loaded {
 	*,
 	*:before,
 	*:after {
@@ -11,7 +11,7 @@
 }
 
 @media (min-width: 50em) {
-	.fetch-all-pets {
+	.fetch-loaded {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		grid-template-rows: 1fr;

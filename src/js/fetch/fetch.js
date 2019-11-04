@@ -111,23 +111,51 @@ var Fetch = (function () {
 		}, {sizes: [], ages: [], genders: [], species: [], breeds: [], other: []});
 	};
 
-	var getFilterFields = function (pets, settings) {
+	var sortFilterValues = function (filters) {
 
-		// Get filters for pets
-		var filters = getFilterValues(pets);
-
-		// Order filter values
+		// Alphabetically sort
 		filters.species.sort();
 		filters.breeds.sort();
 		filters.other.sort();
 
-		// Setup markup string
-		var html = '';
-
-		html += '<h2>Sizes</h2>' + filters.sizes.map(function (size) {
-			return '<li><label><input type="checkbox"> ' + size + '</label></li>';
+		// Sort sizes
+		var sizes = ['Small', 'Medium', 'Large', 'Extra Large'];
+		sizes.forEach(function (size) {
+			if (filters.sizes.indexOf(size) < 0) {
+				sizes.splice(sizes.indexOf(size), 1);
+			}
 		});
+		filters.sizes = sizes;
 
+		return filters;
+
+	};
+
+	var classify = function (type, item) {
+		return 'fetch-filter-' + type + '-' + item.replace(' ', '-');
+	};
+
+	var getFilterFields = function (pets, settings) {
+
+		// Get filters for pets
+		var filters = sortFilterValues(getFilterValues(pets));
+		var filterTypes = ['sizes', 'ages', 'genders', 'species', 'breeds', 'other'];
+
+		// Setup markup string
+		return filterTypes.map(function (type) {
+			var html =
+				'<h2 class="fetch-filter-heading">' + type + '</h2>' +
+				filters[type].map(function (item) {
+					var prop = classify(type, item);
+					var field =
+						'<label for="' + prop + '">' +
+							'<input type="checkbox" id="' + prop + '" data-fetch-filter=".' + prop + '" checked> ' +
+							item +
+						'</label>';
+					return field;
+				}).join('');
+			return html;
+		}).join('');
 
 	};
 
@@ -141,26 +169,60 @@ var Fetch = (function () {
 		if (env.children === false) return 'No Kids';
 	};
 
+	var getPetClasses = function (pet, breeds) {
+
+		// Setup classes array
+		var classes = [];
+
+		// General details
+		classes.push(classify('sizes', pet.size));
+		classes.push(classify('ages', pet.age));
+		classes.push(classify('genders', pet.gender));
+		classes.push(classify('species', pet.species));
+
+		// Breeds
+		breeds.split(', ').forEach(function (breed) {
+			classes.push(classify('breeds', breed));
+		});
+
+		// Add other pet details
+		if (pet.environment.cats === false) {
+			classes.push(classify('other', 'No Cats'));
+		}
+		if (pet.environment.dogs === false) {
+			classes.push(classify('other', 'No Dogs'));
+		}
+		if (pet.environment.children === false) {
+			classes.push(classify('other', 'No Kids'));
+		}
+		if (pet.attributes.special_needs) {
+			classes.push(classify('other', 'Special Needs'));
+		}
+
+		return classes.join(' ');
+
+	};
+
 	var renderPets = function (target, pets, settings) {
 		console.log(pets);
-		target.classList.add('fetch-all-pets');
-		var filters = getFilterFields(pets, settings);
+		target.classList.add('fetch-loaded');
 		target.innerHTML =
 			'<div class="fetch-filters">' +
-				'<p>coming soon...</p>' +
+				getFilterFields(pets, settings) +
 			'</div>' +
 			'<div class="fetch-pet-listings">' +
 				'<div class="fetch-row">' +
 					pets.map(function (pet) {
 						var environment = getEvironment(pet.environment);
+						var breeds = getBreeds(pet.breeds);
 						var html =
-							'<div class="fetch-grid">' +
+							'<div class="fetch-grid ' + getPetClasses(pet, breeds) + '">' +
 								'<a href="' + pet.url + '">' +
 									(pet.photos.length > 0 ? '<div><img class="fetch-img" alt="A photo of ' + pet.name + '" src="' + getImgURL(pet.photos[0]) + '"></div>' : '') +
-									'<h2>' + pet.name + '</h2>' +
+									'<h3>' + pet.name + '</h3>' +
 								'</a>' +
 								'<p class="fetch-all-pets-summary">' + pet.size + ', ' + pet.age + ', ' + pet.gender + '</p>' +
-								'<p class="fetch-all-pets-breeds">' + getBreeds(pet.breeds) + '</p>' +
+								'<p class="fetch-all-pets-breeds">' + breeds + '</p>' +
 								(environment ? '<p class="fetch-all-pets-environment">' + environment + '</p>' : '') +
 								(pet.attributes.special_needs ? '<p class="fetch-all-pets-special-needs">Special Needs</p>' : '') +
 							'</div>';
@@ -199,6 +261,12 @@ var Fetch = (function () {
 		});
 	};
 
+	var filterPets = function (selector) {
+
+
+
+	};
+
 	/**
 	 * Create the Constructor object
 	 */
@@ -217,6 +285,17 @@ var Fetch = (function () {
 		// Merge options into defaults
 		var settings = Object.assign(defaults, options);
 		var key = window.btoa(credentials.shelter + JSON.stringify(options));
+
+
+		var handleFilters = function (event) {
+
+			// Check the checkbox
+			var checkbox = event.target.closest(selector + ' [data-fetch-filter]');
+			if (!checkbox) return;
+
+			filterPets(selector);
+
+		};
 
 
 		/**
@@ -258,6 +337,7 @@ var Fetch = (function () {
 			}
 
 			getFromAPI();
+			document.addEventListener('click', handleFilters);
 
 		};
 
