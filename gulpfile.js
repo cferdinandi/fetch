@@ -8,7 +8,8 @@ var settings = {
 	scripts: true,
 	polyfills: false,
 	styles: true,
-	svgs: true,
+	plugin: true,
+	svgs: false,
 	copy: true,
 	reload: true
 };
@@ -20,23 +21,27 @@ var settings = {
 
 var paths = {
 	input: 'src/',
-	output: 'dist/',
+	output: 'fetch2/',
 	scripts: {
 		input: 'src/js/*',
 		polyfills: '.polyfill.js',
-		output: 'dist/js/'
+		output: 'fetch2/js/'
 	},
 	styles: {
 		input: 'src/sass/**/*.{scss,sass}',
-		output: 'dist/css/'
+		output: 'fetch2/css/'
+	},
+	plugin : {
+	    input: 'src/fetch2.php',
+	    output: 'fetch2/'
 	},
 	svgs: {
 		input: 'src/svg/*.svg',
-		output: 'dist/svg/'
+		output: 'fetch2/svg/'
 	},
 	copy: {
 		input: 'src/copy/**/*',
-		output: 'dist/'
+		output: 'fetch2/'
 	},
 	reload: './'
 };
@@ -53,8 +58,19 @@ var banner = {
 		' | (c) ' + new Date().getFullYear() + ' <%= package.author.name %>' +
 		' | <%= package.license %> License' +
 		' | <%= package.repository.url %>' +
-		' | Includes code from: <%= package.openSource.credits %>' +
-		' */\n'
+		' */\n',
+	plugin:
+		'<?php\n\n' +
+		'/**\n' +
+		' * Plugin Name: <%= package.name %>\n' +
+		' * Plugin URI: <%= package.homepage %>\n' +
+		' * Description: <%= package.description %>\n' +
+		' * Version: <%= package.version %>\n' +
+		' * Author: <%= package.author.name %>\n' +
+		' * Author URI: <%= package.author.url %>\n' +
+		' * License: <%= package.license %>\n' +
+		' */\n\n' +
+		'require_once( dirname( __FILE__) . "/fetch2-shortcode.php" );'
 };
 
 
@@ -117,7 +133,7 @@ var jsTasks = lazypipe()
 	// .pipe(optimizejs)
 	// .pipe(dest, paths.scripts.output)
 	// .pipe(rename, {suffix: '.min'})
-	// .pipe(uglify)
+	.pipe(uglify)
 	.pipe(optimizejs)
 	.pipe(header, banner.main, {package: package})
 	.pipe(dest, paths.scripts.output);
@@ -202,14 +218,26 @@ var buildStyles = function (done) {
 		.pipe(header(banner.main, {package: package}))
 		// .pipe(dest(paths.styles.output))
 		// .pipe(rename({suffix: '.min'}))
-		// .pipe(postcss([
-		// 	minify({
-		// 		discardComments: {
-		// 			removeAll: true
-		// 		}
-		// 	})
-		// ]))
+		.pipe(postcss([
+			minify({
+				discardComments: {
+					removeAll: true
+				}
+			})
+		]))
 		.pipe(dest(paths.styles.output));
+
+};
+
+var buildPlugin = function (done) {
+
+	// Make sure this feature is activated before running
+	if (!settings.plugin) return done();
+
+	// Run tasks on all Sass files
+	return src(paths.plugin.input)
+		.pipe(header(banner.plugin, {package: package}))
+		.pipe(dest(paths.plugin.output));
 
 };
 
@@ -282,6 +310,7 @@ exports.default = series(
 		buildScripts,
 		lintScripts,
 		buildStyles,
+		buildPlugin,
 		buildSVGs,
 		copyFiles
 	)

@@ -1,5 +1,5 @@
 {
-	"name": "fetch",
+	"name": "fetch2",
 	"version": "2.0.0",
 	"description": "The insanely easy to display a beautiful, mobile-friendly list of adoptable pets from Petfinder on your website.",
 	"main": "./dist/fetch.js",
@@ -7,10 +7,8 @@
 		"name": "Chris Ferdinandi",
 		"url": "https://gomakethings.com"
 	},
+	"homepage": "https://fetch.gomakethings.com",
 	"license": "LicenseRef-See included LICENSE.md",
-	"openSource": {
-		"credits": "https://gist.github.com/gitgrimbo/6451492, http://photoswipe.com, https://github.com/cferdinandi/right-height, https://github.com/cferdinandi/houdini"
-	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/cferdinandi/fetch"

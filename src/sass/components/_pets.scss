@@ -1,0 +1,21 @@
+// h3 heading
+.fetch-pet-heading {
+	margin: 0.25em 0;
+	padding: 0;
+}
+
+.fetch-all-pets-summary,
+.fetch-all-pets-breeds,
+.fetch-all-pets-environment {
+	margin: 0 0 0.3125em;
+	padding: 0;
+}
+
+.fetch-all-pets-breeds,
+.fetch-all-pets-environment {
+	color: #808080;
+}
+
+.fetch-all-pets-environment {
+	font-style: italic;
+}
