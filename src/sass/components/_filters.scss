@@ -1,0 +1,21 @@
+.fetch-filters {
+	margin-bottom: 2em;
+}
+
+.fetch-filter-fields {
+	margin-bottom: 1em;
+	outline: none;
+}
+
+.fetch-filters label {
+	display: block;
+	width: 100%;
+}
+
+.fetch-filter-heading {
+	text-transform: capitalize;
+}
+
+.fetch-pet[hidden] {
+	display: none;
+}

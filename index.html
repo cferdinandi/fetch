@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fetch</title>
+	<link rel="stylesheet" type="text/css" href="fetch2/css/fetch2.css">
+	<style type="text/css">
+		body {
+			margin: 0 auto;
+			max-width: 80em;
+			width: 88%;
+		}
+	</style>
+</head>
+<body>
+	<h1>Fetch Demo</h1>
+
+	<div data-fetch="pets"></div>
+
+
+	<!-- Scripts -->
+	<script src="fetch2/js/fetch2.js"></script>
+	<script>
+		// Initialize Fetch
+		var pets = new Fetch('[data-fetch="pets"]', {
+			key: 'Wu6Km6ewRxkHi5jGluN6wIM7BoW7ZrFYDgBnhni4qmA3SFFmNQ',
+			secret: 'WqxhiHyV3q6ui6SOTmFDOl9fkbyV6DVilAvJgRpR',
+			shelter: 'RI77'
+		});
+	</script>
+</body>
+</html>

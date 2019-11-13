@@ -1,0 +1,63 @@
+.fetch-loaded {
+	*,
+	*:before,
+	*:after {
+		box-sizing: border-box;
+	}
+}
+
+.fetch-filter-fields,
+.fetch-filter-button {
+	display: none;
+}
+
+// Main layout
+@media (min-width: 60em) {
+	.fetch-wide-layout.fetch-loaded {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 1fr;
+		grid-column-gap: 1.5em;
+		grid-row-gap: 0;
+	}
+
+	.fetch-wide-layout .fetch-filters { grid-area: 1 / 1 / 2 / 2; }
+	.fetch-wide-layout .fetch-pet-listings { grid-area: 1 / 2 / 2 / 5; }
+
+	.fetch-wide-layout .fetch-filter-fields {
+		display: block;
+	}
+}
+
+.fetch-narrow-layout .fetch-filter-button {
+	display: inline-block;
+}
+
+.fetch-filter-fields.fetch-is-visible {
+	display: block;
+}
+
+@media (max-width: 59.9999em) {
+	.fetch-filter-button {
+		display: block;
+	}
+}
+
+// Pet list layout
+.fetch-row {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 1.5em;
+	column-gap: 1.5em;
+	grid-row-gap: 1.5em;
+	row-gap: 1.5em;
+	text-align: center;
+
+	@media (min-width: 40em) {
+		grid-template-columns: auto auto auto;
+	}
+
+	@media (min-width: 80em) {
+		grid-template-columns: auto auto auto auto;
+	}
+}
