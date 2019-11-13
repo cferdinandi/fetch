@@ -11,6 +11,7 @@ var Fetch = (function () {
 
 		// Status
 		status: 'adoptable',
+		limit: 0,
 
 		// Filters
 		showFilters: true,
@@ -323,7 +324,9 @@ var Fetch = (function () {
 			'</div>';
 
 		// Filter pets
-		filterPets(target, key);
+		if (hasFilters(settings)) {
+			filterPets(target, key);
+		}
 
 	};
 
@@ -346,9 +349,12 @@ var Fetch = (function () {
 			}
 		}).then(function (data) {
 			var allPets = pets.concat(data.animals);
-			if (data.pagination.current_page < data.pagination.total_pages) {
+			if ((settings.limit < 1 || allPets.length <= settings.limit) && data.pagination.current_page < data.pagination.total_pages) {
 				makeCall(target, credentials, settings, key, parseFloat(data.pagination.current_page) + 1, allPets);
 			} else {
+				if (settings.limit) {
+					allPets = allPets.slice(0, settings.limit);
+				}
 				savePets(allPets, key);
 				renderPets(target, allPets, settings, key);
 			}
@@ -434,9 +440,7 @@ var Fetch = (function () {
 	var Constructor = function (selector, credentials, options) {
 
 		var target = document.querySelector(selector);
-		if (!target) {
-			return console.error('Please provide a valid selector.');
-		}
+		if (!target) return;
 
 		// Make sure all required info is provided
 		if (!credentials || !credentials.shelter || !credentials.key || !credentials.secret) {
