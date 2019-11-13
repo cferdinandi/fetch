@@ -509,10 +509,9 @@ var Fetch = (function () {
 
 			if (isFresh(pets)) {
 				renderPets(target, pets.pets, settings, key);
-				return;
+			} else {
+				getFromAPI();
 			}
-
-			getFromAPI();
 
 			if (filters) {
 				document.addEventListener('click', handleFilters);
