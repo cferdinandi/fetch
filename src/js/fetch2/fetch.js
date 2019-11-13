@@ -83,7 +83,7 @@ var Fetch = (function () {
 	};
 
 	var isFresh = function (pets) {
-		return pets && pets.pets && pets.timestamp && pets.timestamp + 3600000 < new Date().getTime();
+		return pets && pets.pets && pets.timestamp && pets.timestamp + 3600000 > new Date().getTime();
 	};
 
 	var getImgURL = function (imgs, settings) {
@@ -507,7 +507,7 @@ var Fetch = (function () {
 			var pets = loadPets(key);
 			var filters = hasFilters(settings);
 
-			if (pets && pets.timestamp + 3600000 < new Date().getTime()) {
+			if (isFresh(pets)) {
 				renderPets(target, pets.pets, settings, key);
 				return;
 			}
