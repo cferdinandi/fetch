@@ -22,6 +22,10 @@ var Fetch = (function () {
 		filterBreeds: true,
 		filterOther: true,
 
+		// Toggle all breeds
+		showToggleAll: true,
+		toggleAllText: 'Select All Breeds',
+
 		// Filter toggle button
 		filterButtonText: 'Filter Results',
 		filterButtonClass: '',
@@ -178,11 +182,11 @@ var Fetch = (function () {
 	};
 
 	var createSelectAll = function (type, settings, states) {
-		if (type !== 'breeds') return '';
+		if (type !== 'breeds' || !settings.showToggleAll) return '';
 		var html =
 			'<label for="select-all-breeds">' +
 				'<input type="checkbox" id="select-all-breeds" data-fetch-select-all ' + (!states || states.toggleAll ? 'checked' : '')  + '> ' +
-				'Select All Breeds' +
+				settings.toggleAllText +
 			'</label>';
 		return html;
 	};
@@ -325,7 +329,7 @@ var Fetch = (function () {
 
 		// Filter pets
 		if (hasFilters(settings)) {
-			filterPets(target, key);
+			filterPets(target, key, settings);
 		}
 
 	};
@@ -361,7 +365,7 @@ var Fetch = (function () {
 		});
 	};
 
-	var filterPets = function (target, key) {
+	var filterPets = function (target, key, settings) {
 
 		// Get filters
 		var breeds = toArray(target.querySelectorAll('[data-fetch-filter-type="breeds"]:checked'));
@@ -372,18 +376,29 @@ var Fetch = (function () {
 			toggleAll: true
 		};
 
-		// Hide all pets
-		toArray(target.querySelectorAll('.fetch-pet')).forEach(function (pet) {
-			pet.setAttribute('hidden', '');
-		});
+		// If breeds filters enabled, hide all pets and show matches
+		// Otherwise, show any hidden pets
+		if (settings.filterBreeds) {
 
-		// Show any with matching breeds
-		breeds.forEach(function (breed) {
-			toArray(target.querySelectorAll(breed.getAttribute('data-fetch-filter'))).forEach(function (pet) {
-				pet.removeAttribute('hidden');
+			// Hide all pets
+			toArray(target.querySelectorAll('.fetch-pet')).forEach(function (pet) {
+				pet.setAttribute('hidden', '');
 			});
-			ids.breeds.push(breed.id);
-		});
+
+			// Show any with matching breeds
+			breeds.forEach(function (breed) {
+				toArray(target.querySelectorAll(breed.getAttribute('data-fetch-filter'))).forEach(function (pet) {
+					pet.removeAttribute('hidden');
+				});
+				ids.breeds.push(breed.id);
+			});
+
+		} else {
+			// Hide all pets
+			toArray(target.querySelectorAll('.fetch-pet[hidden]')).forEach(function (pet) {
+				pet.removeAttribute('hidden', '');
+			});
+		}
 
 		// Hide unmatched pet attributes
 		filters.forEach(function (filter) {
@@ -404,7 +419,7 @@ var Fetch = (function () {
 
 	};
 
-	var toggleAllFilters = function (target, checked, key) {
+	var toggleAllFilters = function (target, checked, key, settings) {
 
 		// Get the content
 		toArray(target.querySelectorAll('[data-fetch-filter-type="breeds"]')).forEach(function (filter) {
@@ -412,7 +427,7 @@ var Fetch = (function () {
 		});
 
 		// Filter all pets
-		filterPets(target, key);
+		filterPets(target, key, settings);
 
 	};
 
@@ -456,14 +471,14 @@ var Fetch = (function () {
 
 			// If a filter was checked
 			if (event.target.closest(selector + ' [data-fetch-filter]')) {
-				filterPets(target, key);
+				filterPets(target, key, settings);
 				return;
 			}
 
 			// If toggle all checkboxes
 			var toggle = event.target.closest(selector + ' [data-fetch-select-all]');
 			if (toggle) {
-				toggleAllFilters(target, toggle.checked, key);
+				toggleAllFilters(target, toggle.checked, key, settings);
 				return;
 			}
 
