@@ -223,18 +223,20 @@ var Fetch = (function () {
 
 					// Generate HTML
 					var html =
-						'<div clas="fetch-filter-section">' +
+						'<div class="fetch-filter-section" id="fetch-filter-section-' + type + '">' +
 							'<h2 class="fetch-filter-heading">' + type + '</h2>' +
-							createSelectAll(type, settings, filterStates) +
-							filters[type].map(function (item) {
-								var prop = classify(type, item);
-								var field =
-									'<label for="' + prop + '">' +
-										'<input type="checkbox" id="' + prop + '" data-fetch-filter=".' + prop + '" data-fetch-filter-type="' + type + '" ' + (isChecked(prop, type, filterStates) ? 'checked' : '') + '> ' +
-										item +
-									'</label>';
-								return field;
-							}).join('') +
+							'<div class="fetch-filter-checkboxes">' +
+								createSelectAll(type, settings, filterStates) +
+								filters[type].map(function (item) {
+									var prop = classify(type, item);
+									var field =
+										'<label for="' + prop + '">' +
+											'<input type="checkbox" id="' + prop + '" data-fetch-filter=".' + prop + '" data-fetch-filter-type="' + type + '" ' + (isChecked(prop, type, filterStates) ? 'checked' : '') + '> ' +
+											item +
+										'</label>';
+									return field;
+								}).join('') +
+							'</div>' +
 						'</div>';
 
 					return html;
