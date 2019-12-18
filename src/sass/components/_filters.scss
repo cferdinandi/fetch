@@ -19,3 +19,18 @@
 .fetch-pet[hidden] {
 	display: none;
 }
+
+#fetch-filter-section-breeds .fetch-filter-checkboxes {
+	@media (min-width: 30em) {
+		column-count: 2;
+		column-gap: 1.5625em;
+	}
+
+	@media (min-width: 40em) {
+		column-count: 3;
+	}
+
+	@media (min-width: 80em) {
+		column-count: 4;
+	}
+}

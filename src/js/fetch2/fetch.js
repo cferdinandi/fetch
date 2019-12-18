@@ -207,7 +207,7 @@ var Fetch = (function () {
 
 		// Get filters for pets
 		var filters = sortFilterValues(getFilterValues(pets, settings));
-		var filterTypes = ['filterSizes', 'filterAges', 'filterGenders', 'filterSpecies', 'filterBreeds', 'filterOther'];
+		var filterTypes = ['filterSpecies', 'filterSizes', 'filterAges', 'filterGenders', 'filterBreeds', 'filterOther'];
 		var filterStates = getFilterStates(key);
 
 		// Setup markup string
