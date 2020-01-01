@@ -252,7 +252,7 @@ var Fetch = (function () {
 		if (env.cats === false && env.dogs === false && env.children === false) return settings.noDogsCatsKids;
 		if (env.cats === false && env.dogs === false) return settings.noDogsCats;
 		if (env.cats === false && env.children === false) return settings.noCatsKids;
-		if (env.dogs === false && env.children === false) return stetings.noDogsKids;
+		if (env.dogs === false && env.children === false) return settings.noDogsKids;
 		if (env.cats === false) return settings.noCats;
 		if (env.dogs == false) return settings.noDogs;
 		if (env.children === false) return settings.noKids;
