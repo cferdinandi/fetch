@@ -4,21 +4,21 @@
  * Add a shortcode for fetch.js
  */
 
-function fetch2_shortcode( $atts, $content = '' ) {
+function fetch2_shortcode( $fetch, $content = '' ) {
 
 	// Get user options
-	$fetch = shortcode_atts(array(
+	// $fetch = shortcode_atts(array(
 
-		// API credentials
-		'key' => null,
-		'secret' => null,
-		'shelter' => null,
+	// 	// API credentials
+	// 	'key' => null,
+	// 	'secret' => null,
+	// 	'shelter' => null,
 
-	), $atts);
+	// ), $atts);
 
 	$id = wp_hash_password( implode('', $fetch) );
 
-	$markup = '<div data-fetch="' . $id . '">' . $content . '</div>';
+	$markup = '<pre>' . (isset( $fetch['status'] ) ? 'true' : 'false') . '</pre><div data-fetch="' . $id . '">' . $content . '</div>';
 
 	$init =
 		'<script>' .
@@ -34,29 +34,29 @@ function fetch2_shortcode( $atts, $content = '' ) {
 						'secret: "' . $fetch['secret'] . '",' .
 						'shelter: "' . $fetch['shelter'] . '"' .
 					'}, {' .
-						( in_array( 'status', $fetch ) ? 'status: "' . $fetch['status'] . '",' : '' ) .
-						( in_array( 'limit', $fetch ) ? 'limit: "' . intval($fetch['limit']) . '",' : '' ) .
-						( in_array( 'showfilters', $fetch ) ? 'showFilters: "' . ($fetch['showfilters'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filtersizes', $fetch ) ? 'filterSizes: "' . ($fetch['filtersizes'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filterages', $fetch ) ? 'filterAges: "' . ($fetch['filterages'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filtergenders', $fetch ) ? 'filterGenders: "' . ($fetch['filtergenders'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filterspecies', $fetch ) ? 'filterSpecies: "' . ($fetch['filterspecies'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filterbreeds', $fetch ) ? 'filterBreeds: "' . ($fetch['filterbreeds'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filterother', $fetch ) ? 'filterOther: "' . ($fetch['filterother'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'filterbuttontext', $fetch ) ? 'filterButtonText: "' . $fetch['filterbuttontext'] . '",' : '' ) .
-						( in_array( 'filterbuttonclass', $fetch ) ? 'filterButtonClass: "' . $fetch['filterbuttonclass'] . '",' : '' ) .
-						( in_array( 'noimage', $fetch ) ? 'noImage: "' . $fetch['noimage'] . '",' : '' ) .
-						( in_array( 'specialneeds', $fetch ) ? 'specialNeeds: "' . $fetch['specialneeds'] . '",' : '' ) .
-						( in_array( 'nodogs', $fetch ) ? 'noDogs: "' . $fetch['nodogs'] . '",' : '' ) .
-						( in_array( 'nocats', $fetch ) ? 'noCats: "' . $fetch['nocats'] . '",' : '' ) .
-						( in_array( 'nokids', $fetch ) ? 'noKids: "' . $fetch['nokids'] . '",' : '' ) .
-						( in_array( 'nodogscatskids', $fetch ) ? 'noDogsCatsKids: "' . $fetch['nodogscatskids'] . '",' : '' ) .
-						( in_array( 'nodogscats', $fetch ) ? 'noDogsCats: "' . $fetch['nodogscats'] . '",' : '' ) .
-						( in_array( 'nodogskids', $fetch ) ? 'noDogsKids: "' . $fetch['nodogskids'] . '",' : '' ) .
-						( in_array( 'nocatskids', $fetch ) ? 'noCatsKids: "' . $fetch['nocatskids'] . '",' : '' ) .
-						( in_array( 'narrowlayout', $fetch ) ? 'narrowLayout: "' . ($fetch['narrowlayout'] === 'true' ? true : false) . '",' : '' ) .
-						( in_array( 'onespecies', $fetch ) ? 'oneSpecies: "' . $fetch['onespecies'] . '",' : '' ) .
-						( in_array( 'newtab', $fetch ) ? 'newTab: "' . ($fetch['newtab'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['status'] ) ? 'status: "' . $fetch['status'] . '",' : '' ) .
+						( isset( $fetch['limit'] ) ? 'limit: "' . intval($fetch['limit']) . '",' : '' ) .
+						( isset( $fetch['showfilters'] ) ? 'showFilters: "' . ($fetch['showfilters'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filtersizes'] ) ? 'filterSizes: "' . ($fetch['filtersizes'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filterages'] ) ? 'filterAges: "' . ($fetch['filterages'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filtergenders'] ) ? 'filterGenders: "' . ($fetch['filtergenders'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filterspecies'] ) ? 'filterSpecies: "' . ($fetch['filterspecies'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filterbreeds'] ) ? 'filterBreeds: "' . ($fetch['filterbreeds'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filterother'] ) ? 'filterOther: "' . ($fetch['filterother'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filterbuttontext'] ) ? 'filterButtonText: "' . $fetch['filterbuttontext'] . '",' : '' ) .
+						( isset( $fetch['filterbuttonclass'] ) ? 'filterButtonClass: "' . $fetch['filterbuttonclass'] . '",' : '' ) .
+						( isset( $fetch['noimage'] ) ? 'noImage: "' . $fetch['noimage'] . '",' : '' ) .
+						( isset( $fetch['specialneeds'] ) ? 'specialNeeds: "' . $fetch['specialneeds'] . '",' : '' ) .
+						( isset( $fetch['nodogs'] ) ? 'noDogs: "' . $fetch['nodogs'] . '",' : '' ) .
+						( isset( $fetch['nocats'] ) ? 'noCats: "' . $fetch['nocats'] . '",' : '' ) .
+						( isset( $fetch['nokids'] ) ? 'noKids: "' . $fetch['nokids'] . '",' : '' ) .
+						( isset( $fetch['nodogscatskids'] ) ? 'noDogsCatsKids: "' . $fetch['nodogscatskids'] . '",' : '' ) .
+						( isset( $fetch['nodogscats'] ) ? 'noDogsCats: "' . $fetch['nodogscats'] . '",' : '' ) .
+						( isset( $fetch['nodogskids'] ) ? 'noDogsKids: "' . $fetch['nodogskids'] . '",' : '' ) .
+						( isset( $fetch['nocatskids'] ) ? 'noCatsKids: "' . $fetch['nocatskids'] . '",' : '' ) .
+						( isset( $fetch['narrowlayout'] ) ? 'narrowLayout: "' . ($fetch['narrowlayout'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['onespecies'] ) ? 'oneSpecies: "' . $fetch['onespecies'] . '",' : '' ) .
+						( isset( $fetch['newtab'] ) ? 'newTab: "' . ($fetch['newtab'] === 'true' ? true : false) . '",' : '' ) .
 					'});' .
 				'});' .
 			'})(window, document);' .
