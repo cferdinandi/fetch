@@ -18,7 +18,7 @@ function fetch2_shortcode( $fetch, $content = '' ) {
 
 	$id = wp_hash_password( implode('', $fetch) );
 
-	$markup = '<pre>' . (isset( $fetch['status'] ) ? 'true' : 'false') . '</pre><div data-fetch="' . $id . '">' . $content . '</div>';
+	$markup = '<div data-fetch="' . $id . '">' . $content . '</div>';
 
 	$init =
 		'<script>' .
