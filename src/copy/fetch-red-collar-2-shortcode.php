@@ -37,6 +37,7 @@ function fetch2_shortcode( $fetch, $content = '' ) {
 						( isset( $fetch['status'] ) ? 'status: "' . $fetch['status'] . '",' : '' ) .
 						( isset( $fetch['limit'] ) ? 'limit: "' . intval($fetch['limit']) . '",' : '' ) .
 						( isset( $fetch['showfilters'] ) ? 'showFilters: "' . ($fetch['showfilters'] === 'true' ? true : false) . '",' : '' ) .
+						( isset( $fetch['filtername'] ) ? 'filterName: "' . ($fetch['filtername'] === 'true' ? true : false) . '",' : '' ) .
 						( isset( $fetch['filtersizes'] ) ? 'filterSizes: "' . ($fetch['filtersizes'] === 'true' ? true : false) . '",' : '' ) .
 						( isset( $fetch['filterages'] ) ? 'filterAges: "' . ($fetch['filterages'] === 'true' ? true : false) . '",' : '' ) .
 						( isset( $fetch['filtergenders'] ) ? 'filterGenders: "' . ($fetch['filtergenders'] === 'true' ? true : false) . '",' : '' ) .
