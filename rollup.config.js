@@ -6,11 +6,11 @@ import pkg from './package.json';
 // Configs
 var configs = {
 	name: 'Fetch',
-	files: ['fetch2.js'],
+	files: ['fetch4.js'],
 	formats: ['iife'],
 	pathIn: 'src/js',
-	pathOut: 'fetch-red-collar-2/js',
-	minify: false,
+	pathOut: 'fetch-red-collar-4/js',
+	minify: true,
 	sourceMap: false
 };
 

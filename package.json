@@ -1,6 +1,6 @@
 {
-	"name": "fetch-red-collar-2",
-	"version": "2.2.0",
+	"name": "fetch-red-collar-3",
+	"version": "3.0.0",
 	"description": "The insanely easy to display a beautiful, mobile-friendly list of adoptable pets from Petfinder on your website.",
 	"main": "./dist/fetch.js",
 	"author": {
@@ -18,10 +18,10 @@
 		"> 0.25%"
 	],
 	"scripts": {
-	    "clean": "recursive-delete 'fetch-red-collar-2'",
+	    "clean": "recursive-delete 'fetch-red-collar-4'",
 	    "js": "rollup --config",
 	    "css": "node sass.js",
-	    "copy": "recursive-copy 'src/copy' 'fetch-red-collar-2'",
+	    "copy": "recursive-copy 'src/copy' 'fetch-red-collar-4'",
 	    "build-dirty": "npm-run-all -p js css copy",
 	    "build": "npm-run-all -s clean build-dirty"
 	},

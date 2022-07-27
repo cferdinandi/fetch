@@ -6,7 +6,7 @@
 	}
 }
 
-.fetch-filter-fields-wrap,
+.fetch-filter-fields,
 .fetch-filter-button {
 	display: none;
 }
@@ -33,11 +33,9 @@
 	display: inline-block;
 }
 
-.fetch-filter-fields-wrap.fetch-is-visible {
+.fetch-filter-fields.fetch-is-visible {
 	display: block;
-}
 
-.fetch-filter-fields {
 	@media (min-width: 20em) {
 		display: flex;
 		flex-wrap: wrap;
