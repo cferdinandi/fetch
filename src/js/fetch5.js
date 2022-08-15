@@ -72,15 +72,6 @@ var hasFilters = function (settings) {
 	return settings.showFilters && (settings.filterAnimals || settings.filterSizes || settings.filterAges || settings.filterGenders || settings.filterBreeds || settings.filterOther);
 };
 
-var saveFilterStates = function (key, ids) {
-	sessionStorage.setItem('fetchFilters_' + key, JSON.stringify(ids));
-};
-
-var getFilterStates = function (key) {
-	var saved = sessionStorage.getItem('fetchFilters_' + key);
-	return saved ? JSON.parse(saved) : null;
-};
-
 var savePets = function (pets, key, name) {
 	if (name) return;
 	sessionStorage.setItem('fetchPets_' + key, JSON.stringify({
@@ -188,23 +179,14 @@ var classify = function (type, item) {
 	return 'fetch-filter-' + type + '-' + item.replace(/[^a-z]+/gi, '-');
 };
 
-var createSelectAll = function (type, settings, states) {
+var createSelectAll = function (type, settings) {
 	if (type !== 'breeds' || !settings.showToggleAll) return '';
 	var html =
 		'<label for="select-all-breeds">' +
-			'<input type="checkbox" id="select-all-breeds" data-fetch-select-all ' + (!states || states.toggleAll ? 'checked' : '')  + '> ' +
+			'<input type="checkbox" id="select-all-breeds" data-fetch-select-all checked> ' +
 			settings.toggleAllText +
 		'</label>';
 	return html;
-};
-
-var isChecked = function (prop, type, states) {
-	if (!states || !states.breeds || !states.filters) return true;
-	if (type === 'breeds') {
-		return states.breeds.indexOf(prop) > -1;
-	} else {
-		return states.filters.indexOf(prop) < 0;
-	}
 };
 
 var getFilterByNameField = function (settings) {
@@ -221,7 +203,7 @@ var getFilterByNameField = function (settings) {
 	return html;
 };
 
-var getFilterFields = function (pets, settings, key) {
+var getFilterFields = function (pets, settings) {
 
 	// Return nothing if filters disabled
 	if (!hasFilters(settings)) return '';
@@ -229,7 +211,6 @@ var getFilterFields = function (pets, settings, key) {
 	// Get filters for pets
 	var filters = sortFilterValues(getFilterValues(pets, settings));
 	var filterTypes = ['filterSpecies', 'filterSizes', 'filterAges', 'filterGenders', 'filterBreeds', 'filterOther'];
-	var filterStates = getFilterStates(key);
 
 	// Setup markup string
 	return '<div class="fetch-filters">' +
@@ -247,12 +228,12 @@ var getFilterFields = function (pets, settings, key) {
 					'<div class="fetch-filter-section" id="fetch-filter-section-' + type + '">' +
 						'<h2 class="fetch-filter-heading">' + type + '</h2>' +
 						'<div class="fetch-filter-checkboxes">' +
-							createSelectAll(type, settings, filterStates) +
+							createSelectAll(type, settings) +
 							filters[type].map(function (item) {
 								var prop = classify(type, item);
 								var field =
 									'<label for="' + prop + '">' +
-										'<input type="checkbox" id="' + prop + '" data-fetch-filter=".' + prop + '" data-fetch-filter-type="' + type + '" ' + (isChecked(prop, type, filterStates) ? 'checked' : '') + '> ' +
+										'<input type="checkbox" id="' + prop + '" data-fetch-filter=".' + prop + '" data-fetch-filter-type="' + type + '" checked> ' +
 										item +
 									'</label>';
 								return field;
@@ -321,7 +302,7 @@ var renderPets = function (target, pets, settings, key, name) {
 	// Render HTML
 	target.innerHTML =
 		getFilterByNameField(settings) +
-		getFilterFields(pets, settings, key) +
+		getFilterFields(pets, settings) +
 		'<div class="fetch-pet-listings">' +
 			'<div class="fetch-row">' +
 				pets.map(function (pet) {
@@ -353,7 +334,7 @@ var renderPets = function (target, pets, settings, key, name) {
 
 	// Filter pets
 	if (hasFilters(settings)) {
-		filterPets(target, key, settings);
+		filterPets(target, settings);
 	}
 
 	if (name) {
@@ -400,16 +381,11 @@ var makeCall = function (target, credentials, settings, key, name, page, pets) {
 	});
 };
 
-var filterPets = function (target, key, settings) {
+var filterPets = function (target, settings) {
 
 	// Get filters
 	var breeds = toArray(target.querySelectorAll('[data-fetch-filter-type="breeds"]:checked'));
 	var filters = toArray(target.querySelectorAll('[data-fetch-filter]:not([data-fetch-filter-type="breeds"]):not(:checked)'));
-	var ids = {
-		breeds: [],
-		filters: [],
-		toggleAll: true
-	};
 
 	// If breeds filters enabled, hide all pets and show matches
 	// Otherwise, show any hidden pets
@@ -425,7 +401,6 @@ var filterPets = function (target, key, settings) {
 			toArray(target.querySelectorAll(breed.getAttribute('data-fetch-filter'))).forEach(function (pet) {
 				pet.removeAttribute('hidden');
 			});
-			ids.breeds.push(breed.id);
 		});
 
 	} else {
@@ -440,21 +415,11 @@ var filterPets = function (target, key, settings) {
 		toArray(target.querySelectorAll(filter.getAttribute('data-fetch-filter'))).forEach(function (pet) {
 			pet.setAttribute('hidden', '');
 		});
-		ids.filters.push(filter.id);
 	});
-
-	var toggleAll = target.querySelector('[data-fetch-select-all]');
-	if (!toggleAll || !toggleAll.checked) {
-		ids.toggleAll = false;
-	}
-
-
-	// Save filter states for page reloads
-	saveFilterStates(key, ids);
 
 };
 
-var toggleAllFilters = function (target, checked, key, settings) {
+var toggleAllFilters = function (target, checked, settings) {
 
 	// Get the content
 	toArray(target.querySelectorAll('[data-fetch-filter-type="breeds"]')).forEach(function (filter) {
@@ -462,7 +427,7 @@ var toggleAllFilters = function (target, checked, key, settings) {
 	});
 
 	// Filter all pets
-	filterPets(target, key, settings);
+	filterPets(target, settings);
 
 };
 
@@ -506,14 +471,14 @@ var Constructor = function (selector, credentials, options) {
 
 		// If a filter was checked
 		if (event.target.closest(selector + ' [data-fetch-filter]')) {
-			filterPets(target, key, settings);
+			filterPets(target, settings);
 			return;
 		}
 
 		// If toggle all checkboxes
 		var toggle = event.target.closest(selector + ' [data-fetch-select-all]');
 		if (toggle) {
-			toggleAllFilters(target, toggle.checked, key, settings);
+			toggleAllFilters(target, toggle.checked, settings);
 			return;
 		}
 

@@ -5,10 +5,10 @@ var pkg = require('./package.json');
 
 // Configs
 var configs = {
-	name: 'fetch4',
-	files: ['fetch4.scss'],
+	name: 'fetch5',
+	files: ['fetch5.scss'],
 	pathIn: 'src/scss',
-	pathOut: 'fetch-red-collar-4/css',
+	pathOut: 'fetch-red-collar-5/css',
 	indentType: 'tab',
 	indentWidth: 1,
 	minify: true,
