@@ -1,0 +1,267 @@
+02/28/2018 06:50:44 pm Deployed branch:  Commit: true
+02/28/2018 06:53:16 pm Deployed branch:  Commit: true
+02/28/2018 06:55:40 pm Deployed branch:  Commit: Added analytics back in
+10/15/2018 08:04:57 pm Deployed branch:  Commit: Added info on styling updates
+01/22/2019 03:13:33 pm Deployed branch:  Commit: Updated support link
+03/26/2019 06:29:55 pm Deployed branch:  Commit: Updated pricing
+11/13/2019 10:44:57 pm Deployed branch:  Commit: New sales page
+11/14/2019 01:59:11 am Deployed branch:  Commit: New sales pageMerge pull request #1 from cferdinandi/next
+
+New sales page
+11/14/2019 01:59:22 am Deployed branch:  Commit: true
+11/14/2019 02:30:28 am Deployed branch:  Commit: Fixed typo
+11/14/2019 03:17:13 pm Deployed branch:  Commit: Updated homepage
+11/14/2019 03:21:25 pm Deployed branch:  Commit: typo
+11/14/2019 03:26:05 pm Deployed branch:  Commit: Updated demos
+11/14/2019 04:28:41 pm Deployed branch:  Commit: Typo
+11/27/2019 01:30:38 pm Deployed branch:  Commit: Updated docs
+01/09/2020 09:38:23 pm Deployed branch:  Commit: Fixed tpyo
+07/18/2020 07:20:58 pm Deployed branch:  Commit: Bump lodash from 4.17.15 to 4.17.19 in /themes/fetch-theme
+
+Bumps [lodash](https://github.com/lodash/lodash) from 4.17.15 to 4.17.19.
+- [Release notes](https://github.com/lodash/lodash/releases)
+- [Commits](https://github.com/lodash/lodash/compare/4.17.15...4.17.19)
+
+Signed-off-by: dependabot[bot] <support@github.com>
+09/04/2020 08:44:37 pm Deployed branch:  Commit: Bump node-sass from 4.13.0 to 4.14.1 in /themes/fetch-theme
+
+Bumps [node-sass](https://github.com/sass/node-sass) from 4.13.0 to 4.14.1.
+- [Release notes](https://github.com/sass/node-sass/releases)
+- [Changelog](https://github.com/sass/node-sass/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/sass/node-sass/compare/v4.13.0...v4.14.1)
+
+Signed-off-by: dependabot[bot] <support@github.com>
+12/12/2020 01:11:20 am Deployed branch:  Commit: Bump ini from 1.3.5 to 1.3.8 in /themes/fetch-theme
+
+Bumps [ini](https://github.com/isaacs/ini) from 1.3.5 to 1.3.8.
+- [Release notes](https://github.com/isaacs/ini/releases)
+- [Commits](https://github.com/isaacs/ini/compare/v1.3.5...v1.3.8)
+
+Signed-off-by: dependabot[bot] <support@github.com>
+03/31/2021 04:04:02 am Deployed branch:  Commit: Bump y18n from 3.2.1 to 3.2.2 in /themes/fetch-theme
+
+Bumps [y18n](https://github.com/yargs/y18n) from 3.2.1 to 3.2.2.
+- [Release notes](https://github.com/yargs/y18n/releases)
+- [Changelog](https://github.com/yargs/y18n/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/yargs/y18n/commits)
+
+Signed-off-by: dependabot[bot] <support@github.com>
+05/10/2021 07:27:22 pm Deployed branch:  Commit: Bump lodash from 4.17.15 to 4.17.21 in /themes/fetch-theme
+
+Bumps [lodash](https://github.com/lodash/lodash) from 4.17.15 to 4.17.21.
+- [Release notes](https://github.com/lodash/lodash/releases)
+- [Commits](https://github.com/lodash/lodash/compare/4.17.15...4.17.21)
+
+Signed-off-by: dependabot[bot] <support@github.com>
+05/10/2021 07:27:25 pm Deployed branch:  Commit: true
+05/11/2021 07:31:03 am Deployed branch:  Commit: Bump hosted-git-info from 2.8.5 to 2.8.9 in /themes/fetch-theme
+
+Bumps [hosted-git-info](https://github.com/npm/hosted-git-info) from 2.8.5 to 2.8.9.
+- [Release notes](https://github.com/npm/hosted-git-info/releases)
+- [Changelog](https://github.com/npm/hosted-git-info/blob/v2.8.9/CHANGELOG.md)
+- [Commits](https://github.com/npm/hosted-git-info/compare/v2.8.5...v2.8.9)
+
+Signed-off-by: dependabot[bot] <support@github.com>
+08/11/2021 04:45:35 pm Deployed branch:  Commit: Bump path-parse from 1.0.6 to 1.0.7 in /themes/fetch-theme
+
+Bumps [path-parse](https://github.com/jbgutierrez/path-parse) from 1.0.6 to 1.0.7.
+- [Release notes](https://github.com/jbgutierrez/path-parse/releases)
+- [Commits](https://github.com/jbgutierrez/path-parse/commits/v1.0.7)
+
+---
+updated-dependencies:
+- dependency-name: path-parse
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+02/09/2022 04:29:43 am Deployed branch:  Commit: Bump copy-props from 2.0.4 to 2.0.5 in /themes/fetch-theme
+
+Bumps [copy-props](https://github.com/gulpjs/copy-props) from 2.0.4 to 2.0.5.
+- [Release notes](https://github.com/gulpjs/copy-props/releases)
+- [Changelog](https://github.com/gulpjs/copy-props/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/gulpjs/copy-props/compare/2.0.4...2.0.5)
+
+---
+updated-dependencies:
+- dependency-name: copy-props
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+02/09/2022 04:36:31 am Deployed branch:  Commit: Updated
+02/12/2022 06:05:56 pm Deployed branch:  Commit: Bump ajv from 6.10.2 to 6.12.6 in /themes/fetch-theme
+
+Bumps [ajv](https://github.com/ajv-validator/ajv) from 6.10.2 to 6.12.6.
+- [Release notes](https://github.com/ajv-validator/ajv/releases)
+- [Commits](https://github.com/ajv-validator/ajv/compare/v6.10.2...v6.12.6)
+
+---
+updated-dependencies:
+- dependency-name: ajv
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+10/30/2022 12:17:30 pm Deployed branch:  Commit: Bump socket.io-parser and browser-sync in /themes/fetch-theme
+
+Bumps [socket.io-parser](https://github.com/socketio/socket.io-parser) to 4.2.1 and updates ancestor dependency [browser-sync](https://github.com/BrowserSync/browser-sync). These dependencies need to be updated together.
+
+
+Updates `socket.io-parser` from 3.2.0 to 4.2.1
+- [Release notes](https://github.com/socketio/socket.io-parser/releases)
+- [Changelog](https://github.com/socketio/socket.io-parser/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/socketio/socket.io-parser/compare/3.2.0...4.2.1)
+
+Updates `browser-sync` from 2.26.7 to 2.27.10
+- [Release notes](https://github.com/BrowserSync/browser-sync/releases)
+- [Changelog](https://github.com/BrowserSync/browser-sync/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/BrowserSync/browser-sync/compare/v2.26.7...v2.27.10)
+
+---
+updated-dependencies:
+- dependency-name: socket.io-parser
+  dependency-type: indirect
+- dependency-name: browser-sync
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+11/23/2022 04:31:26 am Deployed branch:  Commit: Bump engine.io and browser-sync in /themes/fetch-theme
+
+Bumps [engine.io](https://github.com/socketio/engine.io) to 6.2.1 and updates ancestor dependency [browser-sync](https://github.com/BrowserSync/browser-sync). These dependencies need to be updated together.
+
+
+Updates `engine.io` from 3.2.1 to 6.2.1
+- [Release notes](https://github.com/socketio/engine.io/releases)
+- [Changelog](https://github.com/socketio/engine.io/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/socketio/engine.io/compare/3.2.1...6.2.1)
+
+Updates `browser-sync` from 2.26.7 to 2.27.10
+- [Release notes](https://github.com/BrowserSync/browser-sync/releases)
+- [Changelog](https://github.com/BrowserSync/browser-sync/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/BrowserSync/browser-sync/compare/v2.26.7...v2.27.10)
+
+---
+updated-dependencies:
+- dependency-name: engine.io
+  dependency-type: indirect
+- dependency-name: browser-sync
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+12/04/2022 08:20:46 pm Deployed branch:  Commit: Bump decode-uri-component from 0.2.0 to 0.2.2 in /themes/fetch-theme
+
+Bumps [decode-uri-component](https://github.com/SamVerschueren/decode-uri-component) from 0.2.0 to 0.2.2.
+- [Release notes](https://github.com/SamVerschueren/decode-uri-component/releases)
+- [Commits](https://github.com/SamVerschueren/decode-uri-component/compare/v0.2.0...v0.2.2)
+
+---
+updated-dependencies:
+- dependency-name: decode-uri-component
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+03/03/2023 09:20:12 am Deployed branch:  Commit: Bump minimist, mkdirp and extract-zip in /themes/fetch-theme
+
+Bumps [minimist](https://github.com/minimistjs/minimist), [mkdirp](https://github.com/isaacs/node-mkdirp) and [extract-zip](https://github.com/maxogden/extract-zip). These dependencies needed to be updated together.
+
+Updates `minimist` from 1.2.0 to 1.2.8
+- [Release notes](https://github.com/minimistjs/minimist/releases)
+- [Changelog](https://github.com/minimistjs/minimist/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/minimistjs/minimist/compare/v1.2.0...v1.2.8)
+
+Updates `mkdirp` from 0.5.1 to 0.5.6
+- [Release notes](https://github.com/isaacs/node-mkdirp/releases)
+- [Changelog](https://github.com/isaacs/node-mkdirp/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/isaacs/node-mkdirp/compare/0.5.1...v0.5.6)
+
+Updates `extract-zip` from 1.6.7 to 1.7.0
+- [Release notes](https://github.com/maxogden/extract-zip/releases)
+- [Commits](https://github.com/maxogden/extract-zip/compare/v1.6.7...v1.7.0)
+
+---
+updated-dependencies:
+- dependency-name: minimist
+  dependency-type: indirect
+- dependency-name: mkdirp
+  dependency-type: indirect
+- dependency-name: extract-zip
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+04/23/2023 04:40:05 pm Deployed branch:  Commit: Bump ua-parser-js and browser-sync in /themes/fetch-theme
+
+Bumps [ua-parser-js](https://github.com/faisalman/ua-parser-js) to 1.0.35 and updates ancestor dependency [browser-sync](https://github.com/BrowserSync/browser-sync). These dependencies need to be updated together.
+
+
+Updates `ua-parser-js` from 0.7.17 to 1.0.35
+- [Release notes](https://github.com/faisalman/ua-parser-js/releases)
+- [Changelog](https://github.com/faisalman/ua-parser-js/blob/master/changelog.md)
+- [Commits](https://github.com/faisalman/ua-parser-js/compare/0.7.17...1.0.35)
+
+Updates `browser-sync` from 2.26.7 to 2.29.1
+- [Release notes](https://github.com/BrowserSync/browser-sync/releases)
+- [Changelog](https://github.com/BrowserSync/browser-sync/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/BrowserSync/browser-sync/compare/v2.26.7...v2.29.1)
+
+---
+updated-dependencies:
+- dependency-name: ua-parser-js
+  dependency-type: indirect
+- dependency-name: browser-sync
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+04/23/2023 04:40:05 pm Deployed branch:  Commit: Bump axios and browser-sync in /themes/fetch-theme
+
+Bumps [axios](https://github.com/axios/axios) to 0.21.4 and updates ancestor dependency [browser-sync](https://github.com/BrowserSync/browser-sync). These dependencies need to be updated together.
+
+
+Updates `axios` from 0.19.0 to 0.21.4
+- [Release notes](https://github.com/axios/axios/releases)
+- [Changelog](https://github.com/axios/axios/blob/v0.21.4/CHANGELOG.md)
+- [Commits](https://github.com/axios/axios/compare/v0.19.0...v0.21.4)
+
+Updates `browser-sync` from 2.26.7 to 2.29.1
+- [Release notes](https://github.com/BrowserSync/browser-sync/releases)
+- [Changelog](https://github.com/BrowserSync/browser-sync/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/BrowserSync/browser-sync/compare/v2.26.7...v2.29.1)
+
+---
+updated-dependencies:
+- dependency-name: axios
+  dependency-type: indirect
+- dependency-name: browser-sync
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+04/23/2023 04:40:08 pm Deployed branch:  Commit: Bump qs and browser-sync in /themes/fetch-theme
+
+Bumps [qs](https://github.com/ljharb/qs) to 6.11.1 and updates ancestor dependency [browser-sync](https://github.com/BrowserSync/browser-sync). These dependencies need to be updated together.
+
+
+Updates `qs` from 6.5.2 to 6.11.1
+- [Release notes](https://github.com/ljharb/qs/releases)
+- [Changelog](https://github.com/ljharb/qs/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/ljharb/qs/compare/v6.5.2...v6.11.1)
+
+Updates `browser-sync` from 2.26.7 to 2.29.1
+- [Release notes](https://github.com/BrowserSync/browser-sync/releases)
+- [Changelog](https://github.com/BrowserSync/browser-sync/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/BrowserSync/browser-sync/compare/v2.26.7...v2.29.1)
+
+---
+updated-dependencies:
+- dependency-name: qs
+  dependency-type: indirect
+- dependency-name: browser-sync
+  dependency-type: direct:development
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
